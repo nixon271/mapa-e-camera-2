@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://muuq2ltdi4sq"]
+
+[ext_resource type="Script" uid="uid://cp685rp5kdhd3" path="res://codigos/player.gd" id="1_unwft"]
+[ext_resource type="Texture2D" uid="uid://v1tkyav6us4u" path="res://arte/tilemap_packed.png" id="2_kthid"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xojfc"]
+atlas = ExtResource("2_kthid")
+region = Rect2(256, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15dsx"]
+atlas = ExtResource("2_kthid")
+region = Rect2(272, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8v4ht"]
+atlas = ExtResource("2_kthid")
+region = Rect2(256, 128, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4y2i1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xojfc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15dsx")
+}],
+"loop": true,
+"name": &"andando",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8v4ht")
+}],
+"loop": true,
+"name": &"idle ",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ogt8j"]
+radius = 4.0
+height = 8.0
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_unwft")
+
+[node name="corpo" type="AnimatedSprite2D" parent="."]
+position = Vector2(16.9375, 26.75)
+scale = Vector2(1.25781, 1.15625)
+sprite_frames = SubResource("SpriteFrames_4y2i1")
+animation = &"idle "
+
+[node name="colisão" type="CollisionShape2D" parent="."]
+position = Vector2(17, 28)
+shape = SubResource("CapsuleShape2D_ogt8j")
+
+[node name="camera" type="Camera2D" parent="."]
+position = Vector2(159, 92)
+zoom = Vector2(2, 2)
+limit_left = 0
+limit_top = 0
+limit_right = 600
+limit_bottom = 300
+limit_smoothed = true
